@@ -1,8 +1,6 @@
-import React from "react";
 import NavBar from "../components/Navbar";
 import Header from "./components/Header";
 import SearchSideBar from "./components/SearchSideBar";
-import RastaurantCard from "../components/RastaurantCard";
 import SearchRestaurantCard from "./components/SearchRastaurantCard";
 
 export default function Search() {
