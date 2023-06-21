@@ -15,7 +15,60 @@ datasource db {
 
 
 model Rastaurant{
-  id   Int @id @default(autoincrement())
-  name String
-  main_image 
+  id        Int @id @default(autoincrement())
+  name      String
+  main_image    String 
+  description      String
+  slug            String   @unique
+  price           PRICE  
+  images         String[]
+  open_time       String
+  close_time      String
+  items         Item[]
+  location_id   Int
+  location     Location @relation(fields: [location_id], references: [id])
+  cuisine_id   Int
+  cuisine     Cuisine @relation(fields: [cuisine_id], references: [id])
+  
+  
+  cleated_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
 }
+
+model Item {
+    id        Int @id @default(autoincrement())
+  name      String
+  price     String
+  description String
+  rastaurant_id Int
+  rastaurant Rastaurant @relation(fields: [rastaurant_id], references: [id])  
+  cleated_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+}
+
+
+model Location{
+  id        Int @id @default(autoincrement())
+  name      String
+  rastaurant  Rastaurant[]
+  cleated_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+}
+
+
+model Cuisine{
+  id        Int @id @default(autoincrement())
+  name      String
+  rastaurant  Rastaurant[]
+  cleated_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+}
+enum PRICE{
+  CHEAP
+  REQULAR
+  EXPENSIVE
+}
+
