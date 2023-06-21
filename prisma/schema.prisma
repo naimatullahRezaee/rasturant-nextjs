@@ -1,6 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-// password == O9KhVYM3eVawa8hh
+// password == uk229tUbUhxuzbGQ  uk229tUbUhxuzbGQ
 
 
 
@@ -14,7 +14,7 @@ datasource db {
 }
 
 
-model Rastaurant{
+model Restaurant{
   id        Int @id @default(autoincrement())
   name      String
   main_image    String 
@@ -41,8 +41,8 @@ model Item {
   name      String
   price     String
   description String
-  rastaurant_id Int
-  rastaurant Rastaurant @relation(fields: [rastaurant_id], references: [id])  
+  restaurant_id Int
+  restaurant Restaurant @relation(fields: [restaurant_id], references: [id])  
   cleated_at      DateTime @default(now())
   updated_at      DateTime @updatedAt
 }
@@ -51,7 +51,7 @@ model Item {
 model Location{
   id        Int @id @default(autoincrement())
   name      String
-  rastaurant  Rastaurant[]
+  restaurant  Restaurant[]
   cleated_at      DateTime @default(now())
   updated_at      DateTime @updatedAt
 
@@ -61,14 +61,14 @@ model Location{
 model Cuisine{
   id        Int @id @default(autoincrement())
   name      String
-  rastaurant  Rastaurant[]
+  restaurant  Restaurant[]
   cleated_at      DateTime @default(now())
   updated_at      DateTime @updatedAt
 
 }
 enum PRICE{
   CHEAP
-  REQULAR
+  REGULAR
   EXPENSIVE
 }
 
